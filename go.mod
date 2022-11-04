@@ -1,5 +1,3 @@
-module github.com/Zaressa/pivottech
+module calc
 
 go 1.18
-
-require github.com/gorilla/mux v1.8.0
