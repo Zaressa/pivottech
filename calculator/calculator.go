@@ -19,3 +19,7 @@ func Divide(a, b int) (int, error) {
 	return a / b, nil
 
 }
+
+// func Pow(x, y float64)float64{
+// 	return x**y
+// }
