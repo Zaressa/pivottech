@@ -43,6 +43,20 @@ type marvelClient struct {
 }
 
 func (c *marvelClient) getCharacters() ([]Character, error) {
+	var characters []Character
+	req, err := http.NewRequest("GET", "https://gateway.marvel.com:443/v1/public/characters", nil) //contains the endpoint
+	if err != nil {
+		return nil, err
+	}
+	q := req.URL.Query()
+	q.Add("apikey", c.publicKey)
+	q.Add("ts", "1")
+	q.Add("hash", "d41d8cd98f00b204e9800998ecf8427e")
+	req.URL.RawQuery = q.Encode()
+	
+	resp, err := c.httpClient.Do(req)
+	if err != nil {
+		return nil, err
 	res, err := c.httpClient.Get("https://gateway.marvel.com/v1/public/characters") //contians the endpoint
 	if err != nil {
 		log.Println("action failed", err)
@@ -56,5 +70,8 @@ func (c *marvelClient) getCharacters() ([]Character, error) {
 		return nil, err
 
 	}
-	return nil, nil
-}
+	return nil, err
+
+	}
+	defer resp.Body.Close()
+	
