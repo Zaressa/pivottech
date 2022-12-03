@@ -100,18 +100,13 @@ func TestDivideTable(t *testing.T) {
 		{4, 2, 2},
 		{6, 2, 3},
 		{8, 2, 4},
+		{2, 0, 0},
 	}
 	for _, val := range data {
-		got, _ := calculator.Divide(val.a/val.b, val.want)
-		if got != val.want {
+		got, err := calculator.Divide(val.a, val.b)
+		if got != val.want && err != nil {
 			t.Errorf("got %d want %d", got, val.want)
 		}
-	}
-}
 
-func TestDivideByZero(t *testing.T) {
-	_, ok := calculator.DividebyZero(4, 0)
-	if ok {
-		t.Errorf("got %t want %t", ok, false)
 	}
 }
