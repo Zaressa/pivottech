@@ -19,3 +19,10 @@ func Divide(a, b int) (int, error) {
 	return a / b, nil
 
 }
+func DividebyZero(a, b int) (c int, ok bool) {
+	defer func() {
+		recover() // recover from panic if one occured. Set err to nil otherwise.
+	}()
+	c = a / b
+	return c, true
+}
