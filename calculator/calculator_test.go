@@ -109,20 +109,9 @@ func TestDivideTable(t *testing.T) {
 	}
 }
 
-// func TestDividebyZero(t *testing.T){
-// data := []struct {
-// 	a int
-// 	b int
-// 	want int
-// } {
-// 	{4, 0, 0},
-// 	{6, 0, 0},
-// 	{8, 0, 0},
-// }
-// for _, val := range data{
-// 	got := calculator.TestDividebyZero(val.a, val.b)
-// 	if got != val.want {
-// 		t.Errorf("got %d want %d", got, val.want)
-// 	}
-// }
-// }
+func TestDivideByZero(t *testing.T) {
+	_, ok := calculator.DividebyZero(4, 0)
+	if ok {
+		t.Errorf("got %t want %t", ok, false)
+	}
+}
