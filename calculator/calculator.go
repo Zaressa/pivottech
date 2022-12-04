@@ -1,12 +1,15 @@
 package calculator
 
-import "errors"
+import (
+	"errors"
+	"math"
+)
 
 func Add(a, b int) int {
 	return a + b
 }
 func Subtract(a, b int) int {
-	return b - a
+	return a - b
 }
 
 func Multiply(a, b int) int {
@@ -19,10 +22,6 @@ func Divide(a, b int) (int, error) {
 	return a / b, nil
 
 }
-func DividebyZero(a, b int) (c int, ok bool) {
-	defer func() {
-		recover() // recover from panic if one occured. Set err to nil otherwise.
-	}()
-	c = a / b
-	return c, true
+func Pow(x, y float64) float64 {
+	return math.Pow(x, y)
 }
